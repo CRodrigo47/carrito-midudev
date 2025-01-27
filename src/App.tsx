@@ -1,15 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Products } from "./components/Products";
 import { products as initialProducts } from "./mocks/product.json";
 import { Product } from "./types/products";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { FiltersContext } from "./context/filters";
 
 export function useFilters() { //Custom Hook extraido para los filtros
-  const [filters, setFilters] = useState({
-    category: "all",
-    minPrice: 0,
-  });
+  // const [filters, setFilters] = useState({
+  //   category: "all",
+  //   minPrice: 0,
+  // });
+
+  const filters = useContext(FiltersContext)
+  console.log({filters})
+  const setFilters = () => {}
 
   const filterProducts = (products: Product[]) => {
     return products.filter((product) => {

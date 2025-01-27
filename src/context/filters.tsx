@@ -1,21 +1,30 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
+//1. Se crean los tipos que contienen el contexto
 type ContextType = {
-    category: string,
-    minPrice: number
-}
+  filters: Object;
+  setFilters: Function;
+};
 
-//1. Se crea un contexto
-export const FiltersContext = createContext<ContextType | undefined>(undefined)
+//2. Se crea un contexto y se le pasa el tipo (Tipo o undefined) y un valor (undefined)
+//Este es el que tenemos que consumir (se usa en el useContext)
+export const FiltersContext = createContext<ContextType | undefined>(undefined);
 
-// 2. Se crea un Provider para proveer el contexto
-export function FiltersProvider({children}: any){
-    return(
-        <FiltersContext.Provider value={{
-            category: "all",
-            minPrice: 0
-        }}>
-        {children}
-        </FiltersContext.Provider>
-    )
+// 3. Se crea un Provider para proveer el contexto
+//Este nos provee de acceso al contexto (envuelve al componente)
+export function FiltersProvider({ children }: any) {
+  const [filters, setFilters] = useState({
+    category: "all",
+    minPrice: 0,
+  });
+  return (
+    <FiltersContext.Provider
+      value={{
+        filters,
+        setFilters,
+      }}
+    >
+      {children}
+    </FiltersContext.Provider>
+  );
 }
