@@ -1,12 +1,14 @@
 import "./Products.css";
 import { AddToCartIcon } from "./Icons";
 import { Product } from "../types/products";
+import { useCart } from "../hooks/useCart";
 
 type Props = {
   products: Product[]; //Es necesario tipar las props. Sino, la prop es tipo any.
 };
 
 export function Products({ products }: Props) {
+  const {addToCart} = useCart()
   return (
     <main className="products">
       <ul>
@@ -17,7 +19,7 @@ export function Products({ products }: Props) {
               <strong>{product.title}</strong> - ${product.price}
             </div>
             <div>
-              <button>
+              <button onClick={() => addToCart(product)}>
                 <AddToCartIcon />
               </button>
             </div>

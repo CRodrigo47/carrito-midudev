@@ -4,11 +4,11 @@ type Props = {
     setFilters: Function
 }
 
-export function Header({setFilters}: Props){
+export function Header(){
     return(
         <header>
             <h1>React Shop</h1>
-            <Filters setFilters={setFilters}/>
+            <Filters />
         </header>
     )
 }

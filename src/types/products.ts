@@ -20,3 +20,7 @@ export type Product = {
   thumbnail: string;
   images: string[];
 };
+
+export type CartProduct = Product & { //La & indica que además de ser igual
+  quantity: number //que el tipo indicado, se extiende y tiene añadidos.
+}
